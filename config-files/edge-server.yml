@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: edge-server
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+        - id: config-server
+          uri: lb://CONFIG-SERVER
+          predicates:
+            - Path=/config/**
+        - id: eureka-server
+          uri: lb://EUREKA-SERVER
+          predicates:
+            - Path=/eureka/**
+        - id: gateway
+          uri: lb://GATEWAY
+          predicates:
+            - Path=/api/**
+        - id: dashboard
+          uri: lb://DASHBOARD
+          predicates:
+            - Path=/dashboard/**
+        - id: mc1
+          uri: lb://MC1
+          predicates:
+            - Path=/mc1/**
+        - id: mc2
+          uri: lb://MC2
+          predicates:
+            - Path=/mc2/**
+    config:
+      uri: http://localhost:8888
+      fail-fast: true
+      retry:
+        initial-interval: 1000
+        max-attempts: 6
+        max-interval: 2000
+        multiplier: 1.1
+
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-password: admin123
+    key-store-type: PKCS12
+    key-alias: jesus
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always 
