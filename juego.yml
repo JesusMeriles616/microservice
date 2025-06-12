@@ -1,10 +1,8 @@
 spring:
-  application:
-    name: juego-service
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:mysql}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:microservicios}?createDatabaseIfNotExist=true
-    username: ${MYSQL_USER:root}
-    password: ${MYSQL_PASSWORD:root}
+    url: jdbc:mysql://mysql:3306/microservicios?createDatabaseIfNotExist=true
+    username: root
+    password: abc123
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -22,7 +20,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://admin:admin123@localhost:8761/eureka/}
+      defaultZone: http://admin:admin123@eureka:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
   instance:
@@ -38,6 +36,8 @@ management:
   endpoint:
     health:
       show-details: always 
+
 logging:
   level:
     com.zaxxer.hikari: DEBUG
+
