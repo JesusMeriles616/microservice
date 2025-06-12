@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: juego-service
   datasource:
     url: jdbc:mysql://mysql:3306/microservicios?createDatabaseIfNotExist=true
     username: root
