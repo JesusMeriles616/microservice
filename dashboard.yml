@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: dashboard-service
   datasource:
     url: jdbc:mysql://mysql:3306/Dashboard_db?createDatabaseIfNotExist=true
     username: root
