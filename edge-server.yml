@@ -16,10 +16,6 @@ spring:
           uri: lb://EUREKA-SERVER
           predicates:
             - Path=/eureka/**
-        - id: gateway
-          uri: lb://GATEWAY
-          predicates:
-            - Path=/api/**
         - id: dashboard
           uri: lb://DASHBOARD
           predicates:
